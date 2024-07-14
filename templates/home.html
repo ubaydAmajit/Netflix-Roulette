@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block title %}NextFlix{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <div class="title-image">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'media/nextflix_title-removebg.png' %}" alt="NextFlix">
+        </a>
+    </div>
+    <h1>Your
+        <a href="https://www.netflix.com" target="_blank" style="text-decoration: none;">
+            <img src="{% static 'media/netflix_logo.png' %}" alt="Netflix Logo" style="height: 0.9em; vertical-align: middle;">
+        </a>
+        <span class="trademark">™</span> Roulette
+    </h1>
+    <p>
+        No more indecision – your perfect binge awaits!
+    </p>
+    <h2>Set Your Preferences</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.genre }}
+        </div>
+        <div class="form-group">
+            {{ form.min_year }}
+        </div>
+        <div class="form-group">
+            {{ form.max_year }}
+        </div>
+        <div class="form-group">
+            {{ form.min_rating }}
+        </div>
+        <div class="form-group">
+            {{ form.max_rating }}
+        </div>
+        <button type="submit" class="button">Find a Movie</button>
+    </form>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+{% endblock %}

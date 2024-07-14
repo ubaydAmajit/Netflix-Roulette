@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block title %}Movie Recommendation{% endblock %}
+
+{% block content %}
+<h1>We Recommend</h1>
+<div>
+    <h2>{{ movie.title }}</h2>
+    <p>Year: {{ movie.year }}</p>
+    <p>Rating: {{ movie.rating }}</p>
+    <p>Genre: {{ movie.genre }}</p>
+    <p><img src="{{ movie.poster }}" alt="{{ movie.title }} poster"></p>
+</div>
+{% endblock %}

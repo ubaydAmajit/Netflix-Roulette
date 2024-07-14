@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>{% block title %}NextFlix{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'media/nextflix_favicon.png' %}" type="image/x-icon">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-logo">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'media/nextflix_logo.png' %}" alt="NextFlix Logo">
+                </a>
+            </div>
+            <div class="header-buttons">
+                <a href="{% url 'watchlist' %}" class="button">My Watchlist</a>
+                <a href="{% url 'login' %}" class="button">Log In</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 NextFlix</p>
+    </footer>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
