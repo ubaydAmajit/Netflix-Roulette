@@ -3,12 +3,41 @@
 {% block title %}Movie Recommendation{% endblock %}
 
 {% block content %}
-<h1>We Recommend</h1>
-<div>
-    <h2>{{ movie.title }}</h2>
-    <p>Year: {{ movie.year }}</p>
-    <p>Rating: {{ movie.rating }}</p>
-    <p>Genre: {{ movie.genre }}</p>
-    <p><img src="{{ movie.poster }}" alt="{{ movie.title }} poster"></p>
-</div>
+    {% load static %}
+    <div class="title-image">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'media/nextflix_title-removebg.png' %}" alt="NextFlix">
+        </a>
+    </div>
+    <h1>Your
+        <a href="https://www.netflix.com" target="_blank" style="text-decoration: none;">
+            <img src="{% static 'media/netflix_logo.png' %}" alt="Netflix Logo" style="height: 0.9em; vertical-align: middle;">
+        </a>
+        <span class="trademark">™</span> Roulette
+    </h1>
+    <p>
+        No more indecision – your perfect binge awaits!
+    </p>
+
+    <h2>We Recommend</h2>
+    <div class="recommended-movie">
+        <h3>{{ movie.title }}</h3>
+        <p>IMDb Rating: {{ movie.imdb_rating }}</p>
+        <p>Available in: {{ movie.country }}</p>
+        <p>Genre: {{ movie.genre }}</p>
+    </div>
+
+    <h2>All Movies</h2>
+    <ul class="movie-list">
+        {% for movie in movies %}
+            <li class="movie-item">
+                <strong>{{ movie.title }}</strong>
+                <ul>
+                    <li>IMDb Rating: {{ movie.imdb_rating }}</li>
+                    <li>Available in: {{ movie.country }}</li>
+                    <li>Genre: {{ movie.genre }}</li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

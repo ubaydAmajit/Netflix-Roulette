@@ -1,16 +1,16 @@
 from django import forms
+from .utils import fetch_genres, fetch_countries
+
+RATING_CHOICES = [(i, str(i)) for i in range(1, 11)]
 
 
 class PreferenceForm(forms.Form):
-    GENRE_CHOICES = [
-        ('action', 'Action'),
-        ('comedy', 'Comedy'),
-        ('drama', 'Drama'),
-        ('horror', 'Horror'),
-        ('romance', 'Romance'),
-    ]
-    genre = forms.MultipleChoiceField(choices=GENRE_CHOICES, widget=forms.CheckboxSelectMultiple)
-    min_year = forms.IntegerField(label='Min Year', required=False)
-    max_year = forms.IntegerField(label='Max Year', required=False)
-    min_rating = forms.FloatField(label='Min Rating', required=False)
-    max_rating = forms.FloatField(label='Max Rating', required=False)
+    genre = forms.ChoiceField(choices=[], required=False)
+    min_rating = forms.ChoiceField(choices=RATING_CHOICES, required=False)
+    max_rating = forms.ChoiceField(choices=RATING_CHOICES, required=False)
+    country = forms.ChoiceField(choices=[], required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(PreferenceForm, self).__init__(*args, **kwargs)
+        self.fields['genre'].choices = [('', 'Any Genre')] + fetch_genres()
+        self.fields['country'].choices = [('', 'Any Country')] + fetch_countries()

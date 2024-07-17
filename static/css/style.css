@@ -141,3 +141,44 @@ footer {
     width: 100%;
     margin-bottom: 0;
 }
+
+/* Results Page Styles */
+.recommended-movie {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: left;
+}
+
+.movie-list {
+    list-style-type: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.movie-item {
+    background-color: #333;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.movie-item strong {
+    font-size: 1.2em;
+}
+
+.movie-item ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.movie-item li {
+    margin-bottom: 5px;
+}
+
+

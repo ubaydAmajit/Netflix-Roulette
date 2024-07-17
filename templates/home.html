@@ -19,26 +19,26 @@
         No more indecision – your perfect binge awaits!
     </p>
     <h2>Set Your Preferences</h2>
-    <form method="post">
+     <form method="post">
         {% csrf_token %}
-        <div class="form-group">
-            {{ form.genre }}
-        </div>
-        <div class="form-group">
-            {{ form.min_year }}
-        </div>
-        <div class="form-group">
-            {{ form.max_year }}
-        </div>
-        <div class="form-group">
-            {{ form.min_rating }}
-        </div>
-        <div class="form-group">
-            {{ form.max_rating }}
-        </div>
-        <button type="submit" class="button">Find a Movie</button>
+        {{ form.as_p }}
+        <button type="submit">Get a Random Movie</button>
     </form>
-    {% if error %}
-        <p class="error">{{ error }}</p>
+
+    {% if movie %}
+        <h2>Random Movie Recommendation</h2>
+        <p><img src="{{ movie.img }}" alt="{{ movie.title }}"></p>
+        <p>Title: {{ movie.title }}</p>
+        <p>Year: {{ movie.year }}</p>
+        <p>Rating: {{ movie.imdbrating }}</p>
+        <p>Description: {{ movie.synopsis }}</p>
+        <p>Genres:
+            {% for genre in movie.genres %}
+                {{ genre }}
+                {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+    {% elif error %}
+        <p>{{ error }}</p>
     {% endif %}
 {% endblock %}
